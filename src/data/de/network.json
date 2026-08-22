@@ -1,0 +1,7 @@
+[
+  { "name": "Rabbit Hole Paradox", "description": "Cyberpunk/Solarpunk, Paradoxien der Gegenwart", "logo": "/logos/rhp-logo.png" },
+  { "name": "Outgrowing Gender Labels", "description": "Queere Themen, Widerstand, Identität", "logo": "/logos/ogl-logo.jpg" },
+  { "name": "Wesley's Small Corner", "description": "Persönliches, Reflexion", "logo": "/logos/wsc-logo.jpg" },
+  { "name": "Building Molecular Things", "description": "Freie Software, Molecular Cards, DIY-Tech", "logo": "/logos/bmt-logo.png" },
+  { "name": "Symbiotic Realities", "description": "Mixed Reality, Mensch-Technik-Symbiose", "logo": "/logos/sr-logo.png" }
+]

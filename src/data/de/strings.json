@@ -1,0 +1,42 @@
+{
+  "title": "RABBIT HOLE PARADOX",
+  "tagline": "[ Yes, Cyberpunk is Reality now ]",
+
+  "navPrimary": [
+    { "label": "Aktuelle Beiträge", "href": "#feed" },
+    { "label": "Freebies", "href": "#freebies" },
+    { "label": "Die Blogs", "href": "#network" },
+    { "label": "Kontakt", "href": "#kontakt" }
+  ],
+  "navMore": [
+    { "label": "Manifest", "href": "#manifest" },
+    { "label": "Impressum", "href": "#kontakt" }
+  ],
+  "navMoreLabel": "⋯",
+
+  "feedHeading": "Aktuelle Blogbeiträge",
+  "feedNote": "[ Platzhalter — wird später automatisch per RSS-Parser befüllt ]",
+  "feedHashtagLinkText": "Nach Themen stöbern",
+
+  "cyberpunkHeading": "Cyberpunk-Themen",
+  "cyberpunkNote": "[ Platzhalter — zentrale Themen-Hashtags, führen später zu gefilterten Beiträgen aus allen vier Blogs ]",
+
+  "freebiesHeading": "Freebie-Bibliothek",
+  "freebiesNote": "[ Platzhalter — deine bisherigen Bücher, kostenlos ]",
+  "freebieCta": "Kostenlos lesen",
+  "freebiesGroupLinkText": "Zu den Freebies",
+  "freebiesGroupEmptyText": "[ Platzhalter — in dieser Reihe sind noch keine Bücher veröffentlicht ]",
+
+  "manifestHeading": "Manifest",
+
+  "networkHeading": "Das Netzwerk",
+  "networkNote": "[ Platzhalter — jeder Blog eigenständig, mit eigener Stimme ]",
+
+  "kontaktHeading": "Impressum & Kontakt",
+  "impressumNote": "[ Platzhalter — Impressum-Pflichtangaben (Name, Anschrift, Kontakt) kommen hier rein ]",
+  "newsletterText": "[ Platzhalter — unabhängiger Newsletter, gehostet über Buttondown, nicht über Substack ]",
+  "newsletterCta": "Newsletter abonnieren",
+  "newsletterLink": "#",
+
+  "footer": "Rabbit Hole Paradox · rabbitholeparadox.eu · [ Platzhalter-Footer-Text ]"
+}

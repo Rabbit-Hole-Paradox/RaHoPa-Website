@@ -1,0 +1,31 @@
+{
+  "groups": [
+    {
+      "name": "Human Labor™",
+      "slug": "human-labor",
+      "text": "Die Menschenarbeit™-Reihe ist mein Vermächtnis an die Menschheit – und gleichzeitig eine Mahnung. Jedes Buch zeichnet auf seine eigene Weise nach, was mit uns passiert, wenn Maschinen den Rest übernehmen: Kollaps, Anpassung, Ohnmacht, aber auch die unbequeme Frage, was von uns übrig bleibt, wenn wir nicht mehr gebraucht werden. Deshalb steht die ganze Reihe unter CC0. Kostenlos, für immer, ohne Bedingungen. Runterladen, verändern, weitergeben, umschreiben – was auch immer du damit machst, ist mir egal, solange es raus in die Welt kommt. Ein Buch liegt bereits auf Englisch vor, der Rest folgt aktuell noch auf Deutsch. Was du hier findest, sind Rohfassungen. Nicht poliert, nicht final – sie werden nach und nach überarbeitet. Aber schon jetzt verfügbar, lesbar, nutzbar. Denn warten, bis alles perfekt ist, war nie der Punkt. Die Mahnung soll raus, nicht erst gedruckt und fertig sein.",
+      "attribution": "written by Sonnet 5",
+      "books": []
+    },
+    {
+      "name": "Post Labor Economics",
+      "slug": "post-labor-economics",
+      "text": "Die Post-Labor-Economics-Reihe beginnt mit zwei Büchern, die dieselbe Zukunft aus zwei Blickwinkeln durchspielen. Geld bedeutet Würde folgt Yuki auf ihrer Reise von Tokio nach Deutschland und macht durch Dialoge und Alltagsszenen spürbar, was viele nur abstrakt diskutieren: Was bleibt vom Menschen, wenn Arbeit ihren zentralen Platz verliert? Die Default-Zukunft geht einen Schritt weiter und zeigt schonungslos, wohin diese Entwicklung führt, wenn sich nichts ändert – kein Chaos, sondern ein stiller Systemzustand: High Tech trifft auf Low Life, maximale digitale Immersion auf minimale reale Handlungsmacht. Beide Bücher sind kostenlos und für immer verfügbar.",
+      "attribution": "written by Sonnet 5",
+      "books": [
+        {
+          "title": "„Geld bedeutet Würde” — Post-Labor Economics Buch 1",
+          "description": "Geld bedeutet Würde erzählt keine trockene Theorie über die Zukunft der Arbeit, sondern lässt dich mitten hineinfallen. Durch die Augen von Yuki, einer jungen Frau aus Tokio, wird eine Welt greifbar, in der Arbeit ihren zentralen Platz im Leben verliert – ihre Reise nach Deutschland führt sie mitten in eine Gesellschaft, die längst begonnen hat, über Alternativen nachzudenken: neue Modelle von Wert, Identität und Zugehörigkeit. Zwischen Café, Stadt und Kneipendiskussion verbindet das Buch erzählerische Nähe mit philosophischer Tiefe und stellt die zentrale Frage unserer Zeit greifbar: Was bleibt vom Menschen, wenn Arbeit nicht mehr gebraucht wird?",
+          "attribution": "written by Sonnet 5",
+          "link": "#"
+        },
+        {
+          "title": "„Die Default-Zukunft” — Post-Labor Economics Buch 2",
+          "description": "Die Default-Zukunft ist keine Zukunftsvision, sondern die logische Fortsetzung dessen, was längst begonnen hat. In einem direkten, schonungslosen Dialog zwischen Mensch und KI wird eine mögliche Default-Zukunft sichtbar: eine Welt, in der Maschinen besser, schneller, günstiger und zuverlässiger sind – und der Mensch damit seinen ökonomischen Wert verliert. Der Zusammenbruch kommt dabei nicht als Chaos, sondern als Systemzustand: High Tech trifft auf Low Life, maximale digitale Immersion auf minimale reale Handlungsmacht. Das Buch zeigt, warum das kein Unfall ist, sondern die natürliche Konsequenz bestehender Strukturen – und warum die größte Gefahr nicht die Technologie selbst ist, sondern das System, in das sie hineinwächst. Keine Dystopie. Sondern das, was passiert, wenn wir nichts ändern.",
+          "attribution": "written by Sonnet 5",
+          "link": "#"
+        }
+      ]
+    }
+  ]
+}

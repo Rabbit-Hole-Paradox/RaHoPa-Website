@@ -1,0 +1,42 @@
+{
+  "title": "RABBIT HOLE PARADOX",
+  "tagline": "[ Yes, Cyberpunk is Reality now ]",
+
+  "navPrimary": [
+    { "label": "Latest Posts", "href": "#feed" },
+    { "label": "Freebies", "href": "#freebies" },
+    { "label": "The Blogs", "href": "#network" },
+    { "label": "Contact", "href": "#kontakt" }
+  ],
+  "navMore": [
+    { "label": "Manifesto", "href": "#manifest" },
+    { "label": "Imprint", "href": "#kontakt" }
+  ],
+  "navMoreLabel": "⋯",
+
+  "feedHeading": "Latest Blog Posts",
+  "feedNote": "[ Placeholder — will later be filled automatically via RSS parser ]",
+  "feedHashtagLinkText": "Browse by topic",
+
+  "cyberpunkHeading": "Cyberpunk Topics",
+  "cyberpunkNote": "[ Placeholder — core topic hashtags, will later link to filtered posts from all four blogs ]",
+
+  "freebiesHeading": "Freebie Library",
+  "freebiesNote": "[ Everything in this Section is CC0 - Do the duck you want with it ]",
+  "freebieCta": "Read for free",
+  "freebiesGroupLinkText": "See the freebies",
+  "freebiesGroupEmptyText": "[ Placeholder — no books published in this series yet ]",
+
+  "manifestHeading": "Manifesto",
+
+  "networkHeading": "The Network",
+  "networkNote": "[ Placeholder — each blog independent, with its own voice ]",
+
+  "kontaktHeading": "Imprint & Contact",
+  "impressumNote": "[ Placeholder — legally required imprint details (name, address, contact) go here ]",
+  "newsletterText": "[ Placeholder — independent newsletter, hosted via Buttondown, not Substack ]",
+  "newsletterCta": "Subscribe to the newsletter",
+  "newsletterLink": "#",
+
+  "footer": "Rabbit Hole Paradox · rabbitholeparadox.eu · [ Placeholder footer text ]"
+}

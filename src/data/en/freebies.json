@@ -1,0 +1,31 @@
+{
+  "groups": [
+    {
+      "name": "Human Labor™",
+      "slug": "human-labor",
+      "text": "The Human Labor™ series is my bequest to humanity — and a warning at the same time. Each book traces, in its own way, what happens to us once machines take over what's left: collapse, adaptation, powerlessness, and the uncomfortable question of what remains of us once we're no longer needed. That's why the whole series is released under CC0. Free, forever, no conditions. Download it, remix it, pass it on, rewrite it — whatever you do with it is fine by me, as long as it gets out into the world. One book is already available in English; the rest are still in German for now. What you'll find here are rough drafts. Not polished, not final — they'll be revised over time. But already available, readable, usable, right now. Waiting until everything is perfect was never the point. The warning needs to get out, not sit around until it's print-ready.",
+      "attribution": "written by Sonnet 5",
+      "books": []
+    },
+    {
+      "name": "Post Labor Economics",
+      "slug": "post-labor-economics",
+      "text": "The Post Labor Economics series opens with two books that play out the same future from two angles. Money Means Dignity follows Yuki on her journey from Tokyo to Germany, making one of today's most abstract debates tangible through dialogue and everyday scenes: what's left of a person once work loses its central place in life? The Default Future goes a step further and shows, unflinchingly, where this development leads if nothing changes — not chaos, but a quiet system state: high tech meets low life, maximum digital immersion meets minimal real-world agency. Both books are free, forever.",
+      "attribution": "written by Sonnet 5",
+      "books": [
+        {
+          "title": "\"Money Means Dignity\" — Post-Labor Economics Book 1",
+          "description": "Money Means Dignity doesn't lecture you about the future of work — it drops you straight into it. Through the eyes of Yuki, a young woman from Tokyo, a world becomes tangible in which work loses its central place in life: her journey to Germany pulls her into a society that has already started rethinking the alternatives — new models of value, identity, and belonging. Moving between cafés, city streets, and late-night bar arguments, the book blends narrative closeness with philosophical depth, making one of the defining questions of our time impossible to ignore: what's left of a person once work is no longer needed?",
+          "attribution": "written by Sonnet 5",
+          "link": "#"
+        },
+        {
+          "title": "\"The Default Future\" — Post-Labor Economics Book 2",
+          "description": "The Default Future isn't a vision of tomorrow — it's the logical continuation of what's already underway. Through a direct, unflinching dialogue between human and AI, a possible default future comes into view: a world where machines are better, faster, cheaper, and more reliable — and where humans lose their economic value as a result. The collapse doesn't arrive as chaos, though, but as a system state: high tech meets low life, maximum digital immersion meets minimal real-world agency. The book shows why this isn't an accident but the natural consequence of existing structures — and why the real danger isn't the technology itself, but the system it grows into. Not a dystopia. Just what happens if we don't change anything.",
+          "attribution": "written by Sonnet 5",
+          "link": "#"
+        }
+      ]
+    }
+  ]
+}

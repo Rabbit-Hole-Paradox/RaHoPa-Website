@@ -1,0 +1,297 @@
+---
+// BaseLayout — EIN Template für alle Sprachen. Sprachversionen liefern nur
+// andere Daten (siehe src/data/de/, später src/data/en/ usw.), das Layout
+// selbst bleibt unangetastet.
+import "../styles/global.css";
+
+const {
+  title,
+  tagline,
+  navPrimary,
+  navMore = [],
+  navMoreLabel = "⋯",
+  footerText,
+  lang = "en",
+} = Astro.props;
+
+const homeHref = lang === "de" ? "/de/" : "/";
+---
+
+<html lang={lang} data-theme="a">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content={Astro.generator} />
+  <title>{title}</title>
+  <!-- Vor dem ersten Paint: gespeichertes Hintergrund-Theme aus localStorage laden,
+       damit es nicht kurz im Default-Theme "a" aufblitzt (kein FOUC). -->
+  <script is:inline>
+    (function () {
+      try {
+        var saved = localStorage.getItem("rhp-theme");
+        if (saved) document.documentElement.setAttribute("data-theme", saved);
+        if (localStorage.getItem("rhp-boot-seen") === "1") {
+          document.documentElement.classList.add("boot-seen");
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+
+<!-- Eigener Hintergrund-Layer (siehe global.css) — WICHTIG: liegt als
+     Geschwister von #boot-screen im DOM, NICHT als dessen Vorfahre, damit
+     die dortige filter-Animation (Theme A) #boot-screens position:fixed
+     nicht mehr "einfängt". -->
+<div id="bg-layer"></div>
+
+<!-- ===================== RHP-OS BOOTSCREEN / SETTINGS ===================== -->
+<!-- Läuft automatisch beim allerersten Besuch (siehe Head-Script oben, das
+     die Klasse "boot-seen" auf <html> setzt, sobald localStorage es kennt)
+     und lässt sich danach jederzeit über das ⚙️-Icon im Nav erneut öffnen —
+     dann ohne die Tipp-Animation, direkt mit den Einstellungen. -->
+<div id="boot-screen">
+  <button type="button" id="boot-close" class="boot-skip-btn boot-close-btn" title="Close">✕</button>
+  <button type="button" id="boot-skip" class="boot-skip-btn">skip ⏭</button>
+  <div class="boot-inner">
+    <div class="boot-emoji">🐇</div>
+    <p class="boot-title">RABBIT HOLE PARADOX OS</p>
+    <div class="boot-log" id="boot-log"></div>
+
+    <div class="boot-settings" id="boot-settings" hidden>
+      <p class="boot-prompt">&gt; SELECT DISPLAY MODE:</p>
+      <div class="boot-options" id="boot-theme-options">
+        <button type="button" data-boot-theme="a">A · HEX CIRCUIT</button>
+        <button type="button" data-boot-theme="b">B · SIGNAL SNAKES</button>
+        <button type="button" data-boot-theme="c">C · GRID LINES</button>
+        <button type="button" data-boot-theme="d">D · TERMINAL SCAN</button>
+        <button type="button" data-boot-theme="e">E · MAZE</button>
+      </div>
+
+      <p class="boot-prompt">&gt; SELECT LANGUAGE:</p>
+      <div class="boot-options" id="boot-lang-options">
+        <button type="button" data-boot-lang="en">ENGLISH</button>
+        <button type="button" data-boot-lang="de">DEUTSCH</button>
+      </div>
+
+      <button type="button" id="boot-enter" class="boot-enter-btn">&gt; ENTER SYSTEM_</button>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrap">
+
+  <header>
+    <a href={homeHref} class="logo-link">
+      <h1>🐇 {title}</h1>
+      <p class="tagline">{tagline}</p>
+    </a>
+    <nav>
+      {navPrimary.map((item) => <a href={item.href}>{item.label}</a>)}
+
+      {navMore.length > 0 && (
+        <div class="nav-more">
+          <button
+            type="button"
+            class="nav-more-toggle"
+            aria-expanded="false"
+            aria-controls="nav-more-menu"
+          >
+            {navMoreLabel}
+          </button>
+          <div class="nav-more-menu" id="nav-more-menu" hidden>
+            {navMore.map((item) => <a href={item.href}>{item.label}</a>)}
+          </div>
+        </div>
+      )}
+
+      <button
+        type="button"
+        id="settings-open"
+        class="settings-gear-btn"
+        title="Settings"
+      >
+        ⚙️
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>{footerText}</footer>
+
+</div><!-- /.page-wrap -->
+
+<script>
+  // Dropdown-Menü: Overflow ("⋯"). Theme/Sprache laufen jetzt über den
+  // Settings-Bootscreen (⚙️), nicht mehr über eigene Nav-Dropdowns.
+  const dropdowns = Array.from(document.querySelectorAll(".nav-more"))
+    .map((wrapper) => {
+      const toggle = wrapper.querySelector("button[aria-controls]");
+      const menu = toggle && document.getElementById(toggle.getAttribute("aria-controls"));
+      return toggle && menu ? { wrapper, toggle, menu } : null;
+    })
+    .filter(Boolean);
+
+  function closeDropdown(d) {
+    d.toggle.setAttribute("aria-expanded", "false");
+    d.menu.classList.remove("is-open");
+    d.menu.hidden = true;
+  }
+
+  function openDropdown(d) {
+    dropdowns.forEach((other) => { if (other !== d) closeDropdown(other); });
+    d.toggle.setAttribute("aria-expanded", "true");
+    d.menu.hidden = false;
+    d.menu.classList.add("is-open");
+  }
+
+  dropdowns.forEach((d) => {
+    d.toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = d.toggle.getAttribute("aria-expanded") === "true";
+      if (isOpen) closeDropdown(d);
+      else openDropdown(d);
+    });
+  });
+
+  document.addEventListener("click", (e) => {
+    dropdowns.forEach((d) => {
+      if (!d.wrapper.contains(e.target)) closeDropdown(d);
+    });
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") dropdowns.forEach(closeDropdown);
+  });
+
+  // ===================== RHP-OS BOOTSCREEN / SETTINGS =====================
+  // Beim allerersten Besuch läuft automatisch die Boot-Log-Animation, danach
+  // direkt die Einstellungen. Über das ⚙️-Icon lässt sich derselbe Screen
+  // jederzeit erneut öffnen — dann ohne Tipp-Animation, sofort mit den
+  // Einstellungen (Theme + Sprache), inkl. Live-Vorschau beim Klicken.
+  const bootLines = [
+    "RABBIT HOLE PARADOX OS v0.1",
+    "Initializing neon subsystems... OK",
+    "Loading signal loop... OK",
+    "Establishing cyberpunk resistance protocols... OK",
+    "Mounting freebie archive... OK",
+    "Connecting to the network (4 nodes)... OK",
+    "",
+    "> SYSTEM READY",
+  ];
+
+  const bootScreen = document.getElementById("boot-screen");
+  const logEl = document.getElementById("boot-log");
+  const settingsEl = document.getElementById("boot-settings");
+  const skipBtn = document.getElementById("boot-skip");
+  const closeBtn = document.getElementById("boot-close");
+  const enterBtn = document.getElementById("boot-enter");
+  const settingsOpenBtn = document.getElementById("settings-open");
+
+  let typing = false;
+
+  function showLogInstantly() {
+    typing = false;
+    logEl.innerHTML = bootLines.map((l) => `<div class="boot-line">${l}</div>`).join("");
+    settingsEl.hidden = false;
+  }
+
+  function playBootLog() {
+    logEl.innerHTML = "";
+    settingsEl.hidden = true;
+    typing = true;
+    let lineIndex = 0;
+    let charIndex = 0;
+
+    function typeNext() {
+      if (!typing || lineIndex >= bootLines.length) return;
+      const line = bootLines[lineIndex];
+      if (charIndex === 0) logEl.insertAdjacentHTML("beforeend", "<div class='boot-line'></div>");
+      const lines = logEl.querySelectorAll(".boot-line");
+      lines[lines.length - 1].textContent = line.slice(0, charIndex + 1);
+      charIndex++;
+      if (charIndex >= line.length) {
+        lineIndex++;
+        charIndex = 0;
+        if (lineIndex >= bootLines.length) {
+          settingsEl.hidden = false;
+        } else {
+          setTimeout(typeNext, 180);
+        }
+      } else {
+        setTimeout(typeNext, 16);
+      }
+    }
+    typeNext();
+  }
+
+  skipBtn.addEventListener("click", showLogInstantly);
+  closeBtn.addEventListener("click", () => {
+    bootScreen.classList.remove("is-open");
+  });
+
+  // Theme-/Sprachauswahl: immer aktiv, egal ob Erstbesuch oder späteres Öffnen über ⚙️
+  let chosenTheme = document.documentElement.getAttribute("data-theme") || "a";
+  let chosenLang = document.documentElement.lang || "en";
+
+  function refreshBootSelection() {
+    document.querySelectorAll("[data-boot-theme]").forEach((b) => {
+      b.classList.toggle("selected", b.dataset.bootTheme === chosenTheme);
+    });
+    document.querySelectorAll("[data-boot-lang]").forEach((b) => {
+      b.classList.toggle("selected", b.dataset.bootLang === chosenLang);
+    });
+  }
+  refreshBootSelection();
+
+  document.querySelectorAll("[data-boot-theme]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      chosenTheme = btn.dataset.bootTheme;
+      document.documentElement.setAttribute("data-theme", chosenTheme); // Live-Vorschau
+      refreshBootSelection();
+    });
+  });
+  document.querySelectorAll("[data-boot-lang]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      chosenLang = btn.dataset.bootLang;
+      refreshBootSelection();
+    });
+  });
+
+  enterBtn.addEventListener("click", () => {
+    try {
+      localStorage.setItem("rhp-theme", chosenTheme);
+      localStorage.setItem("rhp-lang", chosenLang);
+      localStorage.setItem("rhp-boot-seen", "1");
+    } catch (e) {}
+
+    document.documentElement.classList.add("boot-seen");
+    bootScreen.classList.add("boot-fade-out");
+    setTimeout(() => {
+      bootScreen.classList.remove("is-open", "boot-fade-out");
+    }, 500);
+
+    const currentLang = document.documentElement.lang;
+    if (chosenLang !== currentLang) {
+      window.location.href = chosenLang === "de" ? "/de/" : "/";
+    }
+  });
+
+  settingsOpenBtn.addEventListener("click", () => {
+    bootScreen.classList.add("is-open");
+    showLogInstantly();
+  });
+
+  // Boot-Log-Animation nur beim allerersten Besuch automatisch starten
+  // (siehe Head-Script, das "boot-seen" vor dem ersten Paint auf <html> setzt).
+  if (!document.documentElement.classList.contains("boot-seen")) {
+    bootScreen.classList.add("is-open");
+    playBootLog();
+  }
+</script>
+
+</body>
+</html>

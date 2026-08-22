@@ -1,17 +1,19 @@
 ---
-
+import HomePage from "../components/HomePage.astro";
+import strings from "../data/en/strings.json";
+import manifest from "../data/en/manifest.json";
+import freebies from "../data/en/freebies.json";
+import network from "../data/en/network.json";
+import feed from "../data/en/feed.json";
+import cyberpunkThemes from "../data/en/cyberpunk.json";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<HomePage
+  strings={strings}
+  manifest={manifest}
+  freebies={freebies}
+  network={network}
+  feed={feed}
+  cyberpunkThemes={cyberpunkThemes}
+  lang="en"
+/>

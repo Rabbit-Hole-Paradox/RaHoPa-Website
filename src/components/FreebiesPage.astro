@@ -1,0 +1,49 @@
+---
+// FreebiesPage — eigenständige Seite für die volle Freebie-Bibliothek
+// (Startseite zeigt pro Reihe nur Überschrift + Intro-Text und verlinkt
+// hierher, direkt zum passenden Abschnitt via #slug). Sprachneutral, nach
+// demselben Muster wie HomePage.astro: bekommt alle Inhalte als Props.
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const { strings, freebies, lang } = Astro.props;
+---
+
+<BaseLayout
+  title={strings.title}
+  tagline={strings.tagline}
+  navPrimary={strings.navPrimary}
+  navMore={strings.navMore}
+  navMoreLabel={strings.navMoreLabel}
+  footerText={strings.footer}
+  lang={lang}
+>
+
+  <section id="freebies-page">
+    <h2>{strings.freebiesHeading}</h2>
+    <p class="section-note">{strings.freebiesNote}</p>
+
+    {freebies.groups.map((group) => (
+      <div class="freebie-group" id={group.slug}>
+        <h3 class="freebie-group-heading">{group.name}</h3>
+        <p class="freebie-group-text">{group.text}</p>
+        {group.attribution && <p class="freebie-attribution">* {group.attribution}</p>}
+
+        {group.books.length > 0 ? (
+          <div class="freebie-books">
+            {group.books.map((book) => (
+              <div class="freebie">
+                <h4>{book.title}</h4>
+                <p>{book.description}</p>
+                {book.attribution && <p class="freebie-attribution">* {book.attribution}</p>}
+                <a href={book.link}>{strings.freebieCta} →</a>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="section-note">{strings.freebiesGroupEmptyText}</p>
+        )}
+      </div>
+    ))}
+  </section>
+
+</BaseLayout>

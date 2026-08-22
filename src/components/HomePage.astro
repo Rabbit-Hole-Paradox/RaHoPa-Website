@@ -1,0 +1,108 @@
+---
+// HomePage — die eigentliche Startseiten-Struktur, sprachneutral.
+// Bekommt alle Inhalte als Props; die jeweilige src/pages/<lang>/index.astro
+// importiert nur die passenden JSON-Dateien und reicht sie hier durch.
+// Neue Sprache = neue Seite + neuer src/data/<lang>/-Ordner, diese Datei
+// bleibt unangetastet.
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const { strings, manifest, freebies, network, feed, cyberpunkThemes, lang } = Astro.props;
+
+// Zieladresse der eigenständigen Freebie-Seite (noch zu bauen) — folgt
+// demselben Sprachpräfix-Muster wie homeHref in BaseLayout.astro.
+const freebiesHref = lang === "de" ? "/de/freebies" : "/freebies";
+---
+
+<BaseLayout
+  title={strings.title}
+  tagline={strings.tagline}
+  navPrimary={strings.navPrimary}
+  navMore={strings.navMore}
+  navMoreLabel={strings.navMoreLabel}
+  footerText={strings.footer}
+  lang={lang}
+>
+
+  <!-- ===================== AKTUELLE BLOGBEITRÄGE / LATEST POSTS ===================== -->
+  <section id="feed">
+    <h2>{strings.feedHeading}</h2>
+    <p class="section-note">{strings.feedNote}</p>
+
+    {feed.map((item) => (
+      <div class="feed-item">
+        <span class="title">{item.title}</span>
+        <span class="meta">{item.source} · {item.tags.map((t) => `#${t}`).join(" ")}</span>
+      </div>
+    ))}
+
+    <p class="text-link"><a href="#">{strings.feedHashtagLinkText} →</a></p>
+  </section>
+
+  <!-- ===================== CYBERPUNK-THEMEN / CYBERPUNK TOPICS ===================== -->
+  <section id="cyberpunk">
+    <h2>{strings.cyberpunkHeading}</h2>
+    <p class="section-note">{strings.cyberpunkNote}</p>
+
+    <div class="hashtags">
+      {cyberpunkThemes.map((tag) => (
+        <a href="#">#{tag}</a>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===================== MANIFEST / MANIFESTO ===================== -->
+  <section id="manifest">
+    <h2>{strings.manifestHeading}</h2>
+    {manifest.blocks.map((block) => (
+      block.type === "highlight" ? (
+        <p class="manifest-highlight">{block.text}</p>
+      ) : block.type === "closing" ? (
+        <p class="manifest-closing">{block.text}</p>
+      ) : (
+        <p>{block.text}</p>
+      )
+    ))}
+    {manifest.signature && <p class="manifest-signature">— {manifest.signature}</p>}
+  </section>
+
+  <!-- ===================== FREEBIE-BIBLIOTHEK / FREEBIE LIBRARY ===================== -->
+  <section id="freebies">
+    <h2>{strings.freebiesHeading}</h2>
+    <p class="section-note">{strings.freebiesNote}</p>
+
+    {freebies.groups.map((group) => (
+      <div class="freebie-group">
+        <h3 class="freebie-group-heading">{group.name}</h3>
+        <p class="freebie-group-text">{group.text}</p>
+        <a class="freebie-group-link" href={`${freebiesHref}#${group.slug}`}>{strings.freebiesGroupLinkText} →</a>
+      </div>
+    ))}
+  </section>
+
+  <!-- ===================== DAS NETZWERK / THE NETWORK (vier Blogs) ===================== -->
+  <section id="network">
+    <h2>{strings.networkHeading}</h2>
+    <p class="section-note">{strings.networkNote}</p>
+
+    <div class="blog-grid">
+      {network.map((blog) => (
+        <div class="blog-card">
+          {blog.logo && (
+            <img class="blog-card-logo" src={blog.logo} alt={`${blog.name} logo`} loading="lazy" />
+          )}
+          <h3>{blog.name}</h3>
+          <p>{blog.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ===================== IMPRESSUM / KONTAKT / IMPRINT & CONTACT ===================== -->
+  <section id="kontakt">
+    <h2>{strings.kontaktHeading}</h2>
+    <p class="section-note">{strings.impressumNote}</p>
+    <p>{strings.newsletterText}</p>
+    <a class="newsletter-link" href={strings.newsletterLink}>{strings.newsletterCta} →</a>
+  </section>
+
+</BaseLayout>
